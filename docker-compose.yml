@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:latest  # Використовуйте mysql:latest, якщо потрібен MySQL
+    container_name: hotel_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hotel
+    ports:
+      - "5432:5432"  # Прокидуємо порт для PostgreSQL (або 3306 для MySQL)
+    volumes:
+      - ./db_data:/var/lib/postgresql/data  # Прокидання папки для збереження даних
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080  # Прокидуємо порт для графічного інтерфейсу Adminer
